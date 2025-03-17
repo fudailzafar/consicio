@@ -2,7 +2,8 @@
 
 import { z } from "zod";
 import UploadFormInput from "./upload-form-input";
-import { log } from "console";
+import { useUploadThing } from "@/utils/uploadthing";
+import { toast } from "sonner";
 
 const schema = z.object({
   file: z
@@ -17,7 +18,22 @@ const schema = z.object({
 });
 
 export default function UploadForm() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const { startUpload, routeConfig } = useUploadThing("pdfUploader", {
+    onClientUploadComplete: () => {
+      console.log("uploaded successfully!");
+    },
+    onUploadError: (err) => {
+      console.log("error occurred while uploading");
+      toast.error("❌ Error occurred while uploading", {
+        description: err.message,
+      });
+    },
+    onUploadBegin: ({ file }) => {
+      console.log("upload has begun for", file);
+    },
+  });
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Submitted");
     const formData = new FormData(e.currentTarget);
@@ -29,14 +45,32 @@ export default function UploadForm() {
     console.log(validatedFields);
 
     if (!validatedFields.success) {
-      console.log(
-        validatedFields.error.flatten().fieldErrors.file?.[0] ?? "Invalid File"
-      );
+      toast.error("❌ Something went wrong", {
+        description:
+          validatedFields.error.flatten().fieldErrors.file?.[0] ??
+          "Invalid File",
+      });
       return;
     }
 
+    toast("📄 Uploading PDF...", {
+      description: "We are uploading your PDF!",
+    });
+
     // schema validation
     // upload the file to uploadthing
+
+    const resp = await startUpload([file]);
+    if (!resp) {
+      toast.error("Something went wrong", {
+        description: "Please use a different file",
+      });
+      return;
+    }
+
+    toast("📄 Processing PDF", {
+        description: "Hang tight! Our AI is reading through your document! ✨",
+      });
     // parse the pdf using lang chain
     // summarize the pdf using AI
     // save the summary to the database
