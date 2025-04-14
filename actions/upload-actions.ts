@@ -16,21 +16,7 @@ interface PdfSummaryType {
   fileName: string;
 }
 
-export async function generatePdfSummary({
-  fileUrl,
-  fileName,
-}: {
-  fileUrl: string;
-  fileName: string;
-}) {
-  if (!fileUrl) {
-    return {
-      success: false,
-      message: "File upload failed",
-      data: null,
-    };
-  }
-
+export async function generatePdfText({ fileUrl }: { fileUrl: string }) {
   if (!fileUrl) {
     return {
       success: false,
@@ -40,8 +26,40 @@ export async function generatePdfSummary({
   }
   try {
     const pdfText = await fetchAndExtractPdfText(fileUrl);
-    console.log(pdfText);
+    console.log({ pdfText });
 
+    if (!pdfText) {
+      return {
+        success: false,
+        message: "Failed to fetch and extract PDF text",
+        data: null,
+      };
+    }
+
+    return {
+      success: true,
+      message: "PDF text generated successfully",
+      data: {
+        pdfText,
+      },
+    };
+  } catch (error) {
+    return {
+      success: false,
+      message: "Failed to fetch and extract PDF text",
+      data: null,
+    };
+  }
+}
+
+export async function generatePdfSummary({
+  pdfText,
+  fileName,
+}: {
+  pdfText: string;
+  fileName: string;
+}) {
+  try {
     let summary;
     try {
       summary = await generateSummaryFromGemini(pdfText);
@@ -71,20 +89,18 @@ export async function generatePdfSummary({
       };
     }
 
-    const formattedFileName = formatFileNameAsTitle(fileName);
-
     return {
       success: true,
       message: "Summary generated successfully",
       data: {
-        title: formattedFileName,
+        title: fileName,
         summary,
       },
     };
   } catch (error) {
     return {
       success: false,
-      message: "File upload failed",
+      message: "Failed to generate summary",
       data: null,
     };
   }
