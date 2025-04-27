@@ -2,13 +2,7 @@
 
 Consicio is a modern, responsive web application focused on enhancing productivity and collaboration through seamless task management and streamlined workflows. Built using cutting-edge web technologies, Consicio delivers a clean user experience optimized for both desktop and mobile users. 
 
-## 🚀 Features  
-
-- **Dynamic Blog System** – Read and publish articles on stock market trends and financial insights.  
-- **Admin Dashboard** – Manage blogs, subscriptions, and product listings with an easy-to-use admin panel.  
-- **Seamless Navigation** – Powered by Next.js routing for an intuitive browsing experience.  
-- **Optimized Performance** – Achieved a **98/92 (desktop/mobile) performance score** on Google PageSpeed Insights.  
-- **Cloudinary Integration** – Effortlessly upload and manage images for blog posts.  
+## 🚀 Features   
 
 - **✨ AI-powered** – Text summarization for efficient content digestion
 - **⚡ Clerk** – Authentication system (Login, Sign Up)
