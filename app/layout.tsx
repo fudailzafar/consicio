@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Consicio - AI-Powered PDF Summarizer",
   description:
     "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
-  icons: "/file.png",
+  icons: "/file.svg",
   keywords:
     "AI, Summary, PDF, document, summarizer, text, machine learning, natural language processing, productivity, technology",
   openGraph: {
