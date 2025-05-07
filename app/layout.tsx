@@ -16,6 +16,37 @@ export const metadata: Metadata = {
   title: "Consicio - AI-Powered PDF Summarizer",
   description:
     "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
+  icons: "/file.svg",
+  keywords:
+    "AI, Summary, PDF, document, summarizer, text, machine learning, natural language processing, productivity, technology",
+  openGraph: {
+    title: "Consicio - AI-Powered PDF Summarizer",
+    description:
+      "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
+    url: "https://consicio.tech",
+    siteName: "Consicio",
+    images: [
+      {
+        url: "https://consicio.tech/banner.png",
+        width: 1200,
+        height: 630,
+        alt: "Consicio Logo and Tagline",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consicio - AI-Powered PDF Summarizer",
+    description:
+      "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
+    images: ["https://consicio.tech/banner.png"],
+  },
+  alternates: {
+    canonical: "https://consicio.tech",
+  },
+  robots: "index, follow",
 };
 
 export default function RootLayout({
