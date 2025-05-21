@@ -16,9 +16,10 @@ export const metadata: Metadata = {
   title: "Consicio - AI-Powered PDF Summarizer",
   description:
     "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
-  icons: "/file.svg",
   keywords:
     "AI, Summary, PDF, document, summarizer, text, machine learning, natural language processing, productivity, technology",
+  icons: "/file.svg",
+  metadataBase: new URL("https://consicio.tech"),
   openGraph: {
     title: "Consicio - AI-Powered PDF Summarizer",
     description:
@@ -43,10 +44,24 @@ export const metadata: Metadata = {
       "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
     images: ["https://consicio.tech/banner.png"],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "tNWmeIuH947-4dWetDDnbIGIM-taAlyNgmO4teHhjjg",
+    yandex: "0ca3a41bb16e37ce",
+  },
   alternates: {
     canonical: "https://consicio.tech",
   },
-  robots: "index, follow",
 };
 
 export default function RootLayout({
@@ -56,16 +71,16 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <body className={`${fontSans.variable} font-sans antialiased`}>
-        <div className="relative flex min-h-screen flex-col">
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <Toaster/>
-      </body>
-    </html>
+      <html lang="en">
+        <body className={`${fontSans.variable} font-sans antialiased`}>
+          <div className="relative flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+          <Toaster />
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
