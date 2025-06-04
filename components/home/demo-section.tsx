@@ -1,5 +1,42 @@
 import { Pizza } from "lucide-react";
 import { MotionDiv, MotionH3 } from "../common/motion-wrapper";
+import { SummaryViewer } from "../summaries/summary-viewer";
+
+const DEMO_SUMMARY = `
+# ✨ Fudail Zafar: Full-Stack Engineer Ready to Build! 🚀
+•🎯 A highly motivated Computer Science Engineering student with proven experience in full-stack development and a passion for building innovative solutions.
+•📌 Showcasing projects and internships with a focus on performance optimization and impactful results.
+
+# Document Details
+•📄Type: Resume
+•👥For: Recruiters, Hiring Managers
+
+# Key Highlights
+•🚀 Experience as a Software Engineer Intern at Vayuratha Private Limited and Networksism.
+•⭐ Proficient in modern technologies like ReactJS, NextJS, and Node.js.
+•💫 Award-winning hackathon participant with a focus on teamwork and impactful solutions.
+
+# Why It Matters
+•💡 This resume demonstrates a strong foundation in computer science principles and practical experience in building and deploying web applications. Fudail is a quick learner, a team player, and is passionate about creating solutions that improve user experience and drive business results.
+
+# Main Points
+•🎯 Modernized legacy website into a full-stack e-commerce platform.
+•💪 Optimized web performance with Google Lighthouse, leading to 15% increase in SEO and performance metrics.
+•🔥 Delivered 3 web apps within 2-4 weeks each.
+
+# Pro Tips
+•⭐ Focus on projects that highlight problem-solving and technical skills.
+•💎 Quantify achievements whenever possible to demonstrate impact.
+•🌟 Tailor the resume to match the specific requirements of each job application.
+
+# Key Terms to Know
+•📚 Full-Stack Development: Building both the front-end and back-end of web applications.
+•🔍 PRPL Architecture: A pattern for structuring and serving Progressive Web Apps (PWAs).
+
+# Bottom Line
+•💫 Fudail is a talented and driven Computer Science Engineering student with the skills and experience to make a significant contribution to any team.
+
+`;
 
 export default function DemoSection() {
   return (
@@ -42,8 +79,9 @@ export default function DemoSection() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="relative w-full max-w-3xl h-96 bg-gray-100 rounded-lg shadow-lg overflow-hidden"
-            ></MotionDiv>
+            >
+              <SummaryViewer summary={DEMO_SUMMARY} />
+            </MotionDiv>
           </div>
         </div>
       </div>
