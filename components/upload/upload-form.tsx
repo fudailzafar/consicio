@@ -6,20 +6,20 @@ import { useUploadThing } from "@/utils/uploadthing";
 import { toast } from "sonner";
 import {
   generatePdfSummary,
-  generatePdfText,
   storePdfSummaryAction,
 } from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { formatFileNameAsTitle } from "@/utils/format-utils";
-import LoadingSkeleton from "./loading-skeleton";
+import  LoadingSkeleton  from "./loading-skeleton";
+//schema with zod
 
 const schema = z.object({
   file: z
-    .instanceof(File, { message: "Invalid File" })
-    .refine((file) => file.size <= 24 * 1024 * 1024, {
-      message: "File size must be less than 20MB",
-    })
+    .instanceof(File, { message: "Invalid file" })
+    .refine(
+      (file) => file.size <= 20 * 1024 * 1024,
+      "File size must be less than 20MB"
+    )
     .refine(
       (file) => file.type.startsWith("application/pdf"),
       "File must be a PDF"
@@ -30,13 +30,14 @@ export default function UploadForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
   const { startUpload, routeConfig } = useUploadThing("pdfUploader", {
     onClientUploadComplete: () => {
       console.log("uploaded successfully!");
     },
     onUploadError: (err) => {
-      console.log("error occurred while uploading");
-      toast.error("❌ Error occurred while uploading", {
+      console.log("error occurred while uploading", err);
+      toast(" Error occurred while uploading", {
         description: err.message,
       });
     },
@@ -47,100 +48,90 @@ export default function UploadForm() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
       setIsLoading(true);
-      console.log("Submitted");
+
       const formData = new FormData(e.currentTarget);
       const file = formData.get("file") as File;
 
-      // validating the fields
+      //validating the fields
       const validatedFields = schema.safeParse({ file });
-
+      
       if (!validatedFields.success) {
-        toast.error("❌ Something went wrong", {
+        toast("❌ Something went wrong", {
           description:
             validatedFields.error.flatten().fieldErrors.file?.[0] ??
-            "Invalid File",
+            "Invalid file.",
+          style: { color: "red" },
         });
         setIsLoading(false);
         return;
       }
 
       toast("📄 Uploading PDF...", {
-        description: "We are uploading your PDF!",
+        description: "We are uploading your PDF! ",
       });
 
-      // schema validation
-      // upload the file to uploadthing
+      //upload the file to the uploadthing
 
       const uploadResponse = await startUpload([file]);
       if (!uploadResponse) {
-        toast.error("Something went wrong", {
+        toast("Something went wrong", {
           description: "Please use a different file",
+          style: { color: "red" },
         });
         setIsLoading(false);
         return;
       }
 
-      toast("📄 Processing PDF", {
-        description: "Hang tight! Our AI is reading through your document! ✨",
-      });
-      const uploadFileUrl = uploadResponse[0].serverData.fileUrl;
-      // parse the pdf using lang chain
-
-      let storeResult: any;
-      toast("📄 Saving PDF...", {
-        description: "Hang tight! We are saving your summary! ✨",
-      });
-
-      const formattedFileName = formatFileNameAsTitle(file.name);
-
-      const result = await generatePdfText({
-        fileUrl: uploadFileUrl,
-      });
-
-      toast("📄 Processing PDF", {
+      toast("⏳ Processing PDF...", {
         description: "Hang tight! Our AI is reading through your document! ✨",
       });
 
-      const summaryResult = await generatePdfSummary({
-        pdfText: result?.data?.pdfText ?? "",
-        fileName: formattedFileName,
+      const uploadFileUrl=uploadResponse[0].serverData.fileUrl;
+
+      //parse the pdf using lang chain
+      const result = await generatePdfSummary({
+        fileUrl:uploadFileUrl,
+        fileName:file.name,
       });
 
-      toast("📄 Saving PDF Summary", {
-        description: "Hang tight! Our AI is reading through your document! ✨",
-      });
+      const { data = null, message = null } = result || {};
 
-      const { data = null, message = null } = summaryResult || {};
+      if (data) {
+        let storeResult: any;
 
-      if (data?.summary) {
-        // save the summary to the database
-        storeResult = await storePdfSummaryAction({
-          summary: data.summary,
-          fileUrl: uploadFileUrl,
-          title: formattedFileName,
-          fileName: file.name,
+        toast("💾 Saving PDF...", {
+          description: "Hang tight! We are saving your summary! ✨",
         });
 
-        toast("✨ Summary Generated", {
-          description:
-            "Your PDF has been successfully summarized and saved! ✨",
-        });
+        if (data.summary) {
+          // save the summary to the database
+          storeResult = await storePdfSummaryAction({
+            summary: data.summary,
+            fileUrl: uploadFileUrl,
+            title: data.title,
+            fileName: file.name,
+          });
 
-        formRef.current?.reset();
-        // redirect to the {id} summary page
-        router.push(`/summaries/${storeResult.data.id}`);
+          toast("✨ Summary Generated!", {
+            description:
+              "Your summary has been successfully summarized and saved",
+          });
+
+          formRef.current?.reset();
+          router.push(`/summaries/${storeResult.data.id}`);
+        }
       }
     } catch (error) {
       setIsLoading(false);
-      console.log("Error occurred", error);
+      console.error("error occurred", error);
       formRef.current?.reset();
     } finally {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="flex flex-col gap-8 w-full max-w-2xl mx-auto">
       <div className="relative">
@@ -176,7 +167,7 @@ export default function UploadForm() {
             </div>
           </div>
 
-          <LoadingSkeleton />
+          <LoadingSkeleton/>
         </>
       )}
     </div>

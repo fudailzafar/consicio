@@ -1,10 +1,14 @@
-import Link from "next/link";
 import { cn } from "@/lib/utils";
+import {
+  containerVariants,
+  itemVariants,
+  pricingPlans,
+} from "@/utils/constants";
 import { ArrowRight, CheckIcon } from "lucide-react";
+import Link from "next/link";
 import { MotionDiv, MotionSection } from "../common/motion-wrapper";
-import { containerVariants, itemVariants } from "@/utils/constants";
 
-type PriceType = {
+interface PriceType {
   name: string;
   price: number;
   description: string;
@@ -12,38 +16,7 @@ type PriceType = {
   id: string;
   paymentLink: string;
   priceId: string;
-};
-
-const plans = [
-  {
-    name: "Basic",
-    price: 9,
-    description: "Perfect for occasional use",
-    items: [
-      "5 PDF summaries per month",
-      "Priority processing",
-      "Standard processing speed",
-      "Email support",
-    ],
-    id: "basic",
-    paymentLink: "",
-    priceId: "",
-  },
-  {
-    name: "Pro",
-    price: 19,
-    description: "For professionals and teams",
-    items: [
-      "Unlimited PDF summaries",
-      "Priority processing",
-      "24/7 priority support",
-      "Markdown Export",
-    ],
-    id: "pro",
-    paymentLink: "",
-    priceId: "",
-  },
-];
+}
 
 const listVariant = {
   hidden: { opacity: 0, x: -20 },
@@ -65,7 +38,7 @@ const PricingCard = ({
   return (
     <MotionDiv
       variants={listVariant}
-      whileHover={{scale: 1.05}}
+      whileHover={{ scale: 1.02 }}
       className="relative w-full max-w-lg hover:scale-105 hover:transition-all duration-300"
     >
       <div
@@ -74,20 +47,28 @@ const PricingCard = ({
           id === "pro" && "border-rose-500 gap-5 border-2"
         )}
       >
-        <MotionDiv variants={listVariant} className="flex justify-between items-center gap-4">
+        <MotionDiv
+          variants={listVariant}
+          className="flex justify-between items-center gap-4"
+        >
           <div>
             <p className="text-lg lg:text-xl font-bold capitalize">{name}</p>
             <p className="text-base-content/80 mt-2">{description}</p>
           </div>
         </MotionDiv>
+
         <MotionDiv variants={listVariant} className="flex gap-2">
-          <p className="text-5xl tracking-tight font-extrabold">${price}</p>
+          <p className="text-5xl tracking-tight font-extrabold">₹{price}</p>
           <div className="flex flex-col justify-end mb-[4px]">
-            <p className="text-xs uppercase font-semibold">USD</p>
+            <p className="text-xs uppercase font-semibold">INR</p>
             <p className="text-xs">/month</p>
           </div>
         </MotionDiv>
-        <MotionDiv variants={listVariant} className="space-y-2.5 leading-relaxed text-base flex-1">
+
+        <MotionDiv
+          variants={listVariant}
+          className="space-y-2.5 leading-relaxed text-base flex-1/2"
+        >
           {items.map((item, idx) => (
             <li key={idx} className="flex items-center gap-2">
               <CheckIcon size={18} />
@@ -95,7 +76,11 @@ const PricingCard = ({
             </li>
           ))}
         </MotionDiv>
-        <div className="space-y-2 flex justify-center w-full">
+
+        <MotionDiv
+          variants={listVariant}
+          className="space-y-2 flex justify-center w-full"
+        >
           <Link
             href={paymentLink}
             className={cn(
@@ -107,7 +92,7 @@ const PricingCard = ({
           >
             Buy Now <ArrowRight size={18} />
           </Link>
-        </div>
+        </MotionDiv>
       </div>
     </MotionDiv>
   );
@@ -120,7 +105,7 @@ export default function PricingSection() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="relative overflow-hidden"
+      className="relative overflow-hidden "
       id="pricing"
     >
       <div className="py-12 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12">
@@ -133,7 +118,7 @@ export default function PricingSection() {
           </h2>
         </MotionDiv>
         <div className="relative flex justify-center flex-col lg:flex-row items-center lg:items-stretch gap-8">
-          {plans.map((plan) => (
+          {pricingPlans.map((plan) => (
             <PricingCard key={plan.id} {...plan} />
           ))}
         </div>

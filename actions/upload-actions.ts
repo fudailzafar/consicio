@@ -1,9 +1,8 @@
 "use server";
 
 import { getDbConnection } from "@/lib/db";
-import { generateSummaryFromGemini } from "@/lib/geminiai";
+import { generateSummaryFromGemini } from "@/lib/gemini-ai";
 import { fetchAndExtractPdfText } from "@/lib/langchain";
-import { generateSummaryFromOpenAI } from "@/lib/openai";
 import { formatFileNameAsTitle } from "@/utils/format-utils";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -16,7 +15,13 @@ interface PdfSummaryType {
   fileName: string;
 }
 
-export async function generatePdfText({ fileUrl }: { fileUrl: string }) {
+export async function generatePdfSummary({
+  fileUrl,
+  fileName,
+}: {
+  fileUrl: string;
+  fileName: string;
+}) {
   if (!fileUrl) {
     return {
       success: false,
@@ -24,63 +29,27 @@ export async function generatePdfText({ fileUrl }: { fileUrl: string }) {
       data: null,
     };
   }
+
+  if (!fileUrl) {
+    return {
+      success: false,
+      message: "File upload failed",
+      data: null,
+    };
+  }
+
   try {
     const pdfText = await fetchAndExtractPdfText(fileUrl);
     console.log({ pdfText });
 
-    if (!pdfText) {
-      return {
-        success: false,
-        message: "Failed to fetch and extract PDF text",
-        data: null,
-      };
-    }
-
-    return {
-      success: true,
-      message: "PDF text generated successfully",
-      data: {
-        pdfText,
-      },
-    };
-  } catch (error) {
-    return {
-      success: false,
-      message: "Failed to fetch and extract PDF text",
-      data: null,
-    };
-  }
-}
-
-export async function generatePdfSummary({
-  pdfText,
-  fileName,
-}: {
-  pdfText: string;
-  fileName: string;
-}) {
-  try {
     let summary;
     try {
       summary = await generateSummaryFromGemini(pdfText);
-      console.log({ summary });
+      console.log(summary);
     } catch (error) {
-      console.log(error);
-      // call gemini
-      if (error instanceof Error && error.message === "RATE_LIMIT_EXCEEDED") {
-        try {
-          summary = await generateSummaryFromOpenAI(pdfText);
-        } catch (geminiError) {
-          console.error(
-            "Gemini API failed after OpenAI quote exceeded",
-            geminiError
-          );
-          throw new Error(
-            "Failed to generate summary with available AI providers"
-          );
-        }
-      }
+      console.log("Failed to generate summary", error);
     }
+
     if (!summary) {
       return {
         success: false,
@@ -89,18 +58,20 @@ export async function generatePdfSummary({
       };
     }
 
+    const formattedFileName = formatFileNameAsTitle(fileName);
+
     return {
       success: true,
       message: "Summary generated successfully",
       data: {
-        title: fileName,
+        title: formattedFileName,
         summary,
       },
     };
   } catch (error) {
     return {
       success: false,
-      message: "Failed to generate summary",
+      message: "File upload failed",
       data: null,
     };
   }
@@ -113,21 +84,24 @@ async function savePdfSummary({
   title,
   fileName,
 }: PdfSummaryType) {
-  // sql inserting pdf summary
   try {
     const sql = await getDbConnection();
-    const [savedSummary] =
-      await sql`INSERT INTO pdf_summaries (user_id, original_file_url,
-    summary_text,
-    title,
-    file_name
-   ) VALUES (
+
+    const [savedSummary] = await sql`
+    INSERT INTO pdf_summaries (
+      user_id,
+      original_file_url,
+      summary_text,
+      title,
+      file_name
+      )VALUES(
     ${userId},
     ${fileUrl},
     ${summary},
     ${title},
     ${fileName}
-   ) RETURNING id, summary_text`;
+     )RETURNING id,summary_text`;
+
     return savedSummary;
   } catch (error) {
     console.error("Error saving PDF summary", error);
@@ -141,10 +115,6 @@ export async function storePdfSummaryAction({
   title,
   fileName,
 }: PdfSummaryType) {
-  // user is logged in and has a userId
-  // savePdfSummary
-  //
-
   let savedSummary: any;
   try {
     const { userId } = await auth();
@@ -154,7 +124,6 @@ export async function storePdfSummaryAction({
         message: "User not found",
       };
     }
-
     savedSummary = await savePdfSummary({
       userId,
       fileUrl,
@@ -166,7 +135,7 @@ export async function storePdfSummaryAction({
     if (!savedSummary) {
       return {
         success: false,
-        message: "Failed to save PDF summary, please try again...",
+        message: "Failed to save PDF summary, please try again",
       };
     }
   } catch (error) {
@@ -176,7 +145,8 @@ export async function storePdfSummaryAction({
         error instanceof Error ? error.message : "Error saving PDF summary",
     };
   }
-  // Revalidate our cache
+
+  //revalidate our cache
   revalidatePath(`/summaries/${savedSummary.id}`);
   return {
     success: true,
