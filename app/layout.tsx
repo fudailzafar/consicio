@@ -13,13 +13,10 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://consicio.tech"),
   title: "Consicio - AI-Powered PDF Summarizer",
   description:
     "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
-  keywords:
-    "AI, Summary, PDF, document, summarizer, text, machine learning, natural language processing, productivity, technology",
-  icons: "/file.svg",
-  metadataBase: new URL("https://consicio.tech"),
   openGraph: {
     title: "Consicio - AI-Powered PDF Summarizer",
     description:
@@ -37,13 +34,6 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Consicio - AI-Powered PDF Summarizer",
-    description:
-      "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
-    images: ["https://consicio.tech/banner.png"],
-  },
   robots: {
     index: true,
     follow: true,
@@ -55,12 +45,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consicio - AI-Powered PDF Summarizer",
+  },
   verification: {
     google: "Rh0kj2q3-QvEe2xV56Hwz3x0YcB8bTtAg4fV0wZXJ9k",
     yandex: "0ca3a41bb16e37ce",
-  },
-  alternates: {
-    canonical: "https://consicio.tech",
   },
 };
 
