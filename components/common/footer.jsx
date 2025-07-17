@@ -9,7 +9,7 @@ const Footer = () => {
       >
         <div className="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
           {/* <!--Grid--> */}
-          <div className="py-7 border-t-2 border-rose-600">
+          <div className="py-7">
             <div className="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
               <span className="text-sm text-white ">
                 Copyright © Consicio 2025, All rights reserved.
