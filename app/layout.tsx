@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   title: "Consicio - AI-Powered PDF Summarizer",
   description:
     "Save hours of reading time. Transform lengthy PDFs into clear, accurate summaries in seconds with our advanced AI technology.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     title: "Consicio - AI-Powered PDF Summarizer",
     description:
@@ -25,7 +29,7 @@ export const metadata: Metadata = {
     siteName: "Consicio",
     images: [
       {
-        url: "https://consicio.tech/banner.png",
+        url: "https://consicio.tech/og-image.png",
         width: 1200,
         height: 630,
         alt: "Consicio Logo and Tagline",
