@@ -29,12 +29,11 @@ export default function Header() {
               <UserButton />
             </SignedIn>
           </div>
-          </SignedIn>
+        </SignedIn>
 
-          <SignedOut>
-            <NavLink href="/sign-in">Sign In</NavLink>
-          </SignedOut>
-
+        <SignedOut>
+          <NavLink href="/sign-in">Sign In</NavLink>
+        </SignedOut>
       </div>
     </nav>
   );

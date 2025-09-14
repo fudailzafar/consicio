@@ -1,4 +1,3 @@
-
 export const pricingPlans = [
   {
     name: "Basic",
@@ -8,10 +7,10 @@ export const pricingPlans = [
       "5 PDF summaries per month",
       "Standard processing speed",
       "Email support",
-    ],  
+    ],
     id: "basic",
-    paymentLink:  "https://consicio.tech/upload",
-    priceId:  "price_1",
+    paymentLink: "https://consicio.tech/upload",
+    priceId: "price_1",
   },
   {
     name: "Pro",
@@ -25,7 +24,7 @@ export const pricingPlans = [
     ],
     id: "pro",
     paymentLink: "https://consicio.tech/upload",
-    priceId:  "price_2",
+    priceId: "price_2",
   },
 ];
 

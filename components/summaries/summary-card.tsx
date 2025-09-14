@@ -38,7 +38,7 @@ const StatsBadge = ({ status }: { status: string }) => {
         "px-3 py-1 text-xs font-medium rounded-full capitalize",
         status === "completed"
           ? "bg-green-100 text-green-800"
-          : "bg-yellow-100 text-yellow-800"
+          : "bg-yellow-100 text-yellow-800",
       )}
     >
       {status}
@@ -48,7 +48,15 @@ const StatsBadge = ({ status }: { status: string }) => {
 
 export default function SummaryCard({ summary }: { summary: any }) {
   return (
-    <MotionDiv variants={itemVariants} initial="hidden" animate="visible" whileHover={{scale: 1.02,transition: {duration: 0.2,ease: "easeOut"}}} >
+    <MotionDiv
+      variants={itemVariants}
+      initial="hidden"
+      animate="visible"
+      whileHover={{
+        scale: 1.02,
+        transition: { duration: 0.2, ease: "easeOut" },
+      }}
+    >
       <Card className="relative h-full ">
         <div className="absolute top-2 right-2">
           <DeleteButton summaryId={summary.id} />

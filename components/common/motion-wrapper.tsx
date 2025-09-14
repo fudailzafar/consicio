@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { motion } from "motion/react";
 
@@ -19,5 +19,3 @@ export const MotionSpan = motion.span;
 export const MotionImg = motion.img;
 
 export const MotionButton = motion.button;
-
-

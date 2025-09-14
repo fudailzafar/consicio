@@ -15,7 +15,9 @@ export default function UpgradeRequired() {
               Premium Feature
             </span>
           </div>
-          <h1 className="text-4xl font-bold tracking-tight bg-linear-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">Subscription Required</h1>
+          <h1 className="text-4xl font-bold tracking-tight bg-linear-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+            Subscription Required
+          </h1>
           <p className="text-lg leading-8 text-gray-600 border-2 border-rose-200 bg-white/50 backdrop-blur-xs rounded-lg p-6 border-dashed max-w-xl">
             You need to upgrade to the Basic Plan or the Pro Plan to access this
             feature 💖

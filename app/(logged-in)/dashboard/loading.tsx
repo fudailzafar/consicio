@@ -1,5 +1,9 @@
 import BgGradient from "@/components/common/bg-gradient";
-import { MotionDiv, MotionH1, MotionP } from "@/components/common/motion-wrapper";
+import {
+  MotionDiv,
+  MotionH1,
+  MotionP,
+} from "@/components/common/motion-wrapper";
 import SummaryCard from "@/components/summaries/summary-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { itemVariants } from "@/utils/constants";
@@ -14,7 +18,7 @@ function HeaderSkeleton() {
           whileInView="visible"
           className="text-4xl font-bold tracking-tight bg-linear-to-r from-gray-600 to-gray-900 bg-clip-text text-transparent"
         >
-          <Skeleton className="h-10 w-48"/>
+          <Skeleton className="h-10 w-48" />
         </MotionH1>
         <MotionP
           variants={itemVariants}
@@ -25,7 +29,12 @@ function HeaderSkeleton() {
           <Skeleton className="h-6 w-96" />
         </MotionP>
       </div>
-      <MotionDiv variants={itemVariants} initial="hidden" animate="visible" className="self-start">
+      <MotionDiv
+        variants={itemVariants}
+        initial="hidden"
+        animate="visible"
+        className="self-start"
+      >
         <Skeleton className="h-10 w-32" />
       </MotionDiv>
     </div>

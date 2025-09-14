@@ -10,7 +10,7 @@ import {
 } from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import  LoadingSkeleton  from "./loading-skeleton";
+import LoadingSkeleton from "./loading-skeleton";
 //schema with zod
 
 const schema = z.object({
@@ -18,11 +18,11 @@ const schema = z.object({
     .instanceof(File, { message: "Invalid file" })
     .refine(
       (file) => file.size <= 20 * 1024 * 1024,
-      "File size must be less than 20MB"
+      "File size must be less than 20MB",
     )
     .refine(
       (file) => file.type.startsWith("application/pdf"),
-      "File must be a PDF"
+      "File must be a PDF",
     ),
 });
 
@@ -56,7 +56,7 @@ export default function UploadForm() {
 
       //validating the fields
       const validatedFields = schema.safeParse({ file });
-      
+
       if (!validatedFields.success) {
         toast("❌ Something went wrong", {
           description:
@@ -88,12 +88,12 @@ export default function UploadForm() {
         description: "Hang tight! Our AI is reading through your document! ✨",
       });
 
-      const uploadFileUrl=uploadResponse[0].serverData.fileUrl;
+      const uploadFileUrl = uploadResponse[0].serverData.fileUrl;
 
       //parse the pdf using lang chain
       const result = await generatePdfSummary({
-        fileUrl:uploadFileUrl,
-        fileName:file.name,
+        fileUrl: uploadFileUrl,
+        fileName: file.name,
       });
 
       const { data = null, message = null } = result || {};
@@ -167,7 +167,7 @@ export default function UploadForm() {
             </div>
           </div>
 
-          <LoadingSkeleton/>
+          <LoadingSkeleton />
         </>
       )}
     </div>

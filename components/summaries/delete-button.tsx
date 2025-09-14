@@ -25,14 +25,14 @@ export default function DeleteButton({ summaryId }: DeleteButtonProps) {
 
   const handleDelete = async () => {
     startTransition(async () => {
-    const result = await deleteSummaryAction(summaryId);
-    if (!result.success) {
-      toast.error("Error", {
-        description: "Failed to delete summary",
-      });
-    }
+      const result = await deleteSummaryAction(summaryId);
+      if (!result.success) {
+        toast.error("Error", {
+          description: "Failed to delete summary",
+        });
+      }
 
-    setOpen(false);
+      setOpen(false);
     });
   };
   return (

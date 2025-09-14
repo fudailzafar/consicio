@@ -1,8 +1,8 @@
-# 🤖 Consicio  
+# 🤖 Consicio
 
-Consicio is a modern, responsive web application focused on enhancing productivity and collaboration through seamless task management and streamlined workflows. Built using cutting-edge web technologies, Consicio delivers a clean user experience optimized for both desktop and mobile users. 
+Consicio is a modern, responsive web application focused on enhancing productivity and collaboration through seamless task management and streamlined workflows. Built using cutting-edge web technologies, Consicio delivers a clean user experience optimized for both desktop and mobile users.
 
-## 🚀 Features   
+## 🚀 Features
 
 - **✨ AI-powered** – Text summarization for efficient content digestion
 - **⚡ Clerk** – Authentication system (Login, Sign Up)
@@ -10,16 +10,16 @@ Consicio is a modern, responsive web application focused on enhancing productivi
 - **📄 SSR** – Dynamic pages with server-side rendering (SSR)
 - **📱Easy Accessibility** – Fully responsive across mobile, tablet, and desktop devices
 
-## 🛠️ Tech Stack  
+## 🛠️ Tech Stack
 
-- **Frontend:** Next.js (App Router), React.js  
-- **Backend:** TypeScript, Zod (via API routes)  
-- **Database:** UploadThing, NeonDB 
-- **Styling:** Tailwind CSS, ShadcnUI 
-- **Authentication & Security:** Clerk 
+- **Frontend:** Next.js (App Router), React.js
+- **Backend:** TypeScript, Zod (via API routes)
+- **Database:** UploadThing, NeonDB
+- **Styling:** Tailwind CSS, ShadcnUI
+- **Authentication & Security:** Clerk
 - **AI and Parsing:** LangChain, OpenAI, Gemini
 
-## 📂 Folder Structure  
+## 📂 Folder Structure
 
 ```bash
 Directory structure:
@@ -107,61 +107,72 @@ Directory structure:
         ├── format-utils.ts
         ├── prompts.ts
         ├── summary-helpers.ts
-        └── uploadthing.ts 
+        └── uploadthing.ts
 ```
 
-## 💻 Getting Started  
+## 💻 Getting Started
 
-### Prerequisites  
+### Prerequisites
 
-Make sure you have:  
-- **Node.js v14 or later**  
-- **npm or yarn**  
+Make sure you have:
 
-### Installation  
+- **Node.js v14 or later**
+- **npm or yarn**
 
-Clone the repository:  
+### Installation
+
+Clone the repository:
+
 ```bash
 git clone https://github.com/fudailzafar/consicio.git
 cd consicio
 ```
 
-Install dependencies:  
+Install dependencies:
+
 ```bash
 npm install
 ```
-or  
+
+or
+
 ```bash
 yarn install
 ```
 
-Run the development server:  
+Run the development server:
+
 ```bash
 npm start
 ```
-or  
+
+or
+
 ```bash
 yarn start
 ```
+
 Visit `http://localhost:3000` in your browser.
 
-## 📦 Deployment  
+## 📦 Deployment
 
-To build the project for production:  
+To build the project for production:
+
 ```bash
 npm run build
 ```
-This generates a `build/` folder with optimized static files, ready for deployment.  
 
-## 🎯 Performance Scores  
+This generates a `build/` folder with optimized static files, ready for deployment.
+
+## 🎯 Performance Scores
 
 ✅ **Desktop:** **Performance (98), Accessibility (87), Best Practices (100), SEO (91)**  
-✅ **Mobile:** **Performance (92), Accessibility (86), Best Practices (96), SEO (91)**  
+✅ **Mobile:** **Performance (92), Accessibility (86), Best Practices (96), SEO (91)**
 
-## 📜 License  
+## 📜 License
 
 This project is licensed under the **MIT License**.
 
 ---
 
-**📢 Contributions are welcome!** Feel free to fork this repository, submit issues, or open pull requests. 🚀  
+**📢 Contributions are welcome!** Feel free to fork this repository, submit issues, or open pull requests. 🚀

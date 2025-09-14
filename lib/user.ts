@@ -35,8 +35,9 @@ export async function hasReachedUploadLimit(userId: string) {
 }
 
 export async function getSubscriptionStatus(user: User) {
+  const hasSubscription = await hasActivePlan(
+    user.emailAddresses[0].emailAddress,
+  );
 
-  const hasSubscription = await hasActivePlan(user.emailAddresses[0].emailAddress);
-
-  return hasSubscription ;
+  return hasSubscription;
 }

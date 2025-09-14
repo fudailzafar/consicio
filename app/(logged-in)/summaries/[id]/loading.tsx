@@ -15,7 +15,6 @@ function HeaderSkeleton() {
   );
 }
 
-
 export default function LoadingSummary() {
   return (
     <div className="relative isolate min-h-screen bg-linear-to-b from-rose-50/40 to-white">
@@ -29,12 +28,11 @@ export default function LoadingSummary() {
             <div className="flex flex-col lg:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
               <div className="flex items-center justify-center gap-2">
                 <Skeleton className="h-4 w-4" />
-                <Skeleton className="w-12 h-6"/>
+                <Skeleton className="w-12 h-6" />
               </div>
               <div className="flex gap-2">
-              <Skeleton className="w-12 h-6"/>
-              <Skeleton className="w-12 h-6"/>
-
+                <Skeleton className="w-12 h-6" />
+                <Skeleton className="w-12 h-6" />
               </div>
             </div>
 

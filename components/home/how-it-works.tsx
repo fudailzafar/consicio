@@ -77,7 +77,7 @@ export default function HowItWorks() {
               {idx < steps.length - 1 && (
                 <MotionDiv
                   initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1}}
+                  whileInView={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: idx * 0.2 + 0.3 }}
                   className="hidden absolute md:block top-1/2 -right-4 transform -translate-y-1/2 z-10"
                 >

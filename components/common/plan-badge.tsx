@@ -14,10 +14,9 @@ export default async function PlanBadge() {
 
   let priceId: string | null = null;
   if (email) {
-     priceId = await getPriceIdForActiveUser(email);
+    priceId = await getPriceIdForActiveUser(email);
   }
   console.log(priceId);
-  
 
   let planName = "Buy a plan";
 
@@ -32,13 +31,13 @@ export default async function PlanBadge() {
       variant="outline"
       className={cn(
         "ml-2 bg-linear-to-r from-amber-100 to-amber-200 border-amber-300 hidden lg:flex flex-row items-center",
-        !priceId && 'from-red-100 to-red-200 border-red-300'
+        !priceId && "from-red-100 to-red-200 border-red-300",
       )}
     >
       <Crown
         className={cn(
           "w-3 h-3 mr-1 text-amber-600",
-          !priceId && "text-red-600"
+          !priceId && "text-red-600",
         )}
       />
       {planName}

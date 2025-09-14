@@ -11,7 +11,9 @@ export default function EmptySummaryState() {
         <h2 className="text-xl font-semibold text-gray-600">
           No summaries yet
         </h2>
-        <p className="text-gray-500 max-w-md">Upload your first PDF to get started with AI-powered summaries.</p>
+        <p className="text-gray-500 max-w-md">
+          Upload your first PDF to get started with AI-powered summaries.
+        </p>
         <Link href={"/upload"}>
           <Button
             variant={"link"}

@@ -76,16 +76,16 @@ export default function DemoSection() {
           </div>
         </div>
 
-          <div className="flex justify-center items-center px-2 sm:px-4 lg:px-6">
-            {/* Summary Viewer */}
-            <MotionDiv
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <SummaryViewer summary={DEMO_SUMMARY} />
-            </MotionDiv>
-          </div>
+        <div className="flex justify-center items-center px-2 sm:px-4 lg:px-6">
+          {/* Summary Viewer */}
+          <MotionDiv
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
+            <SummaryViewer summary={DEMO_SUMMARY} />
+          </MotionDiv>
+        </div>
       </div>
     </section>
   );

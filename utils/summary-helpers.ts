@@ -1,5 +1,5 @@
 export const parseSection = (
-  section: string
+  section: string,
 ): { title: string; points: string[] } => {
   const [title, ...content] = section.split("\n");
   const cleanTitle = title.startsWith("#")
@@ -34,7 +34,8 @@ export const parseSection = (
   return {
     title: cleanTitle,
     points: points.filter(
-      (point) => point && !point.startsWith("#") && !point.startsWith("[Choose")
+      (point) =>
+        point && !point.startsWith("#") && !point.startsWith("[Choose"),
     ),
   };
 };

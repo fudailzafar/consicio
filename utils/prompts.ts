@@ -40,5 +40,3 @@ Example format:
 •💫This is another example point
 
 Never deviate from this format. Every line that contains content must start with "•" followed by an emoji.`;
-
-
