@@ -3,7 +3,7 @@ import { MotionDiv, MotionH3 } from "../common/motion-wrapper";
 import { SummaryViewer } from "../summaries/summary-viewer";
 
 const DEMO_SUMMARY = `
-# ✨ Fudail Zafar: Full-Stack Engineer Ready to Build! 🚀
+# ✨ Raj Kumar: Full-Stack Engineer Ready to Build! 🚀
 •🎯 A highly motivated Computer Science Engineering student with proven experience in full-stack development and a passion for building innovative solutions.
 •📌 Showcasing projects and internships with a focus on performance optimization and impactful results.
 
@@ -17,7 +17,7 @@ const DEMO_SUMMARY = `
 •💫 Award-winning hackathon participant with a focus on teamwork and impactful solutions.
 
 # Why It Matters
-•💡 This resume demonstrates a strong foundation in computer science principles and practical experience in building and deploying web applications. Fudail is a quick learner, a team player, and is passionate about creating solutions that improve user experience and drive business results.
+•💡 This resume demonstrates a strong foundation in computer science principles and practical experience in building and deploying web applications. Raj is a quick learner, a team player, and is passionate about creating solutions that improve user experience and drive business results.
 
 # Main Points
 •🎯 Modernized legacy website into a full-stack e-commerce platform.
@@ -34,7 +34,7 @@ const DEMO_SUMMARY = `
 •🔍 PRPL Architecture: A pattern for structuring and serving Progressive Web Apps (PWAs).
 
 # Bottom Line
-•💫 Fudail is a talented and driven Computer Science Engineering student with the skills and experience to make a significant contribution to any team.
+•💫 Raj is a talented and driven Computer Science Engineering student with the skills and experience to make a significant contribution to any team.
 
 `;
 
