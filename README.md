@@ -140,16 +140,49 @@ or
 yarn install
 ```
 
+### Environment Setup
+
+1. Copy the example environment file:
+
+```bash
+cp .example.env.local .env.local
+```
+
+2. Fill in the required environment variables in `.env.local`:
+
+```bash
+# Authentication (Clerk)
+CLERK_SECRET_KEY="your_clerk_secret_key"
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+
+# Database
+DATABASE_URL="your_database_connection_string"
+
+# AI Services
+GEMINI_API_KEY="your_gemini_api_key"
+OPENAI_API_KEY="your_openai_api_key"
+
+# File Upload
+UPLOADTHING_TOKEN="your_uploadthing_token"
+```
+
+3. Get your environment variables:
+   - **Clerk**: Sign up at [clerk.com](https://clerk.com) and get your keys from the dashboard
+   - **Database**: Set up a PostgreSQL database (Neon, Supabase, or similar)
+   - **Gemini**: Get API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - **OpenAI**: Get API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+   - **UploadThing**: Sign up at [uploadthing.com](https://uploadthing.com) and get your token
+
 Run the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 or
 
 ```bash
-yarn start
+yarn dev
 ```
 
 Visit `http://localhost:3000` in your browser.
@@ -163,11 +196,6 @@ npm run build
 ```
 
 This generates a `build/` folder with optimized static files, ready for deployment.
-
-## 🎯 Performance Scores
-
-✅ **Desktop:** **Performance (98), Accessibility (87), Best Practices (100), SEO (91)**  
-✅ **Mobile:** **Performance (92), Accessibility (86), Best Practices (96), SEO (91)**
 
 ## 📜 License
 
