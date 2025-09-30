@@ -1,6 +1,7 @@
 import { FileText } from "lucide-react";
 import NavLink from "./nav-link";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
 export default function Header() {
   return (
     <nav className="container flex items-center justify-between py-4 lg:px-8 px-2 mx-auto">

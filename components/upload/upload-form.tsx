@@ -11,8 +11,8 @@ import {
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingSkeleton from "./loading-skeleton";
-//schema with zod
 
+//schema with zod
 const schema = z.object({
   file: z
     .instanceof(File, { message: "Invalid file" })

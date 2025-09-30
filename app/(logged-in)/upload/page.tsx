@@ -3,7 +3,6 @@ import { MotionDiv } from "@/components/common/motion-wrapper";
 import UploadForm from "@/components/upload/upload-form";
 import UploadHeader from "@/components/upload/upload-header";
 import { containerVariants } from "@/utils/constants";
-
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 

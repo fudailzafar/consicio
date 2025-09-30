@@ -1,8 +1,8 @@
 import { Sparkles } from "lucide-react";
-
 import { Badge } from "../ui/badge";
 import { MotionDiv } from "../common/motion-wrapper";
 import { itemVariants } from "@/utils/constants";
+
 export default function UploadHeader() {
   return (
     <div className="flex flex-col items-center justify-center gap-6 text-center">

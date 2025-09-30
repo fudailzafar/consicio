@@ -1,7 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 import { SUMMARY_SYSTEM_PROMPT } from "@/utils/prompts";
 
-//initialize the gemini api with your api key
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || "" });
 
 export const generateSummaryFromGemini = async (pdfText: string) => {

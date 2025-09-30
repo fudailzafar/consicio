@@ -10,6 +10,7 @@ interface UploadFormInputProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   isLoading: boolean;
 }
+
 const UploadFormInput = forwardRef<HTMLFormElement, UploadFormInputProps>(
   ({ onSubmit, isLoading }, ref) => {
     return (
