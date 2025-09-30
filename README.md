@@ -12,7 +12,7 @@ Consicio is a modern, responsive web application focused on enhancing productivi
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** Next.js (App Router), React.js
+- **Frontend:** Next.js (App Router)
 - **Backend:** TypeScript, Zod (via API routes)
 - **Database:** UploadThing, NeonDB
 - **Styling:** Tailwind CSS, ShadcnUI
@@ -27,27 +27,35 @@ Directory structure:
     ├── README.md
     ├── components.json
     ├── eslint.config.mjs
+    ├── LICENSE
     ├── middleware.ts
     ├── next.config.ts
     ├── package.json
     ├── postcss.config.mjs
     ├── schema.sql
     ├── tsconfig.json
+    ├── .example.env.local
     ├── actions/
     │   ├── summary-actions.ts
     │   └── upload-actions.ts
     ├── app/
     │   ├── globals.css
     │   ├── layout.tsx
+    │   ├── manifest.ts
+    │   ├── not-found.tsx
     │   ├── page.tsx
     │   ├── (logged-in)/
     │   │   ├── dashboard/
+    │   │   │   ├── loading.tsx
     │   │   │   └── page.tsx
     │   │   ├── summaries/
     │   │   │   └── [id]/
+    │   │   │       ├── loading.tsx
     │   │   │       └── page.tsx
     │   │   └── upload/
     │   │       └── page.tsx
+    │   ├── [...not-found]/
+    │   │   └── page.tsx
     │   ├── api/
     │   │   └── uploadthing/
     │   │       ├── core.ts
@@ -61,14 +69,17 @@ Directory structure:
     ├── components/
     │   ├── common/
     │   │   ├── bg-gradient.tsx
-    │   │   ├── footer.tsx
+    │   │   ├── footer.jsx
     │   │   ├── header.tsx
     │   │   ├── motion-wrapper.tsx
-    │   │   └── nav-link.tsx
+    │   │   ├── nav-link.tsx
+    │   │   ├── plan-badge.tsx
+    │   │   └── upgrade-required.tsx
     │   ├── home/
     │   │   ├── cta-section.tsx
     │   │   ├── demo-section.tsx
     │   │   ├── hero-section.tsx
+    │   │   ├── how-it-works-section.tsx
     │   │   ├── how-it-works.tsx
     │   │   ├── pricing-section.tsx
     │   │   └── TiltChipLinkExample.jsx
@@ -89,23 +100,32 @@ Directory structure:
     │   │   ├── card.tsx
     │   │   ├── dialog.tsx
     │   │   ├── input.tsx
+    │   │   ├── skeleton.tsx
     │   │   └── sonner.tsx
     │   └── upload/
+    │       ├── loading-skeleton.tsx
     │       ├── upload-form-input.tsx
     │       ├── upload-form.tsx
     │       └── upload-header.tsx
     ├── lib/
     │   ├── db.ts
+    │   ├── gemini-ai.ts
     │   ├── geminiai.ts
     │   ├── langchain.ts
     │   ├── openai.ts
+    │   ├── payments.ts
     │   ├── summaries.ts
+    │   ├── user.ts
     │   └── utils.ts
     ├── public/
+    │   ├── robots.txt
+    │   └── sitemap.xml
     └── utils/
         ├── constants.ts
         ├── format-utils.ts
+        ├── helpers.ts
         ├── prompts.ts
+        ├── summary-helper.ts
         ├── summary-helpers.ts
         └── uploadthing.ts
 ```
@@ -145,7 +165,7 @@ yarn install
 1. Copy the example environment file:
 
 ```bash
-cp .example.env.local .env.local
+cp .env.example .env.local
 ```
 
 2. Fill in the required environment variables in `.env.local`:

@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { useState } from "react";
 import { NavigationControls } from "./navigation-controls";
 import ProgressBar from "./progress-bar";
@@ -46,7 +46,6 @@ export function SummaryViewer({ summary }: { summary: string }) {
         <div className="px-4 sm:px-6">
           <SectionTitle title={sections[currentSection]?.title || ""} />
           <ContentSection
-            title={sections[currentSection]?.title || ""}
             points={sections[currentSection]?.points || []}
           />
         </div>

@@ -35,13 +35,7 @@ const RegularPoint = ({ point }: { point: string }) => {
   );
 };
 
-export default function ContentSection({
-  title,
-  points,
-}: {
-  title: string;
-  points: string[];
-}) {
+export default function ContentSection({ points }: { points: string[] }) {
   return (
     <MotionDiv
       variants={containerVariants}

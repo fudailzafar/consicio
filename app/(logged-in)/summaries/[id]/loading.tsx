@@ -1,7 +1,6 @@
 import BgGradient from "@/components/common/bg-gradient";
 import { Skeleton } from "@/components/ui/skeleton";
 import LoadingSkeleton from "@/components/upload/loading-skeleton";
-import { FileText } from "lucide-react";
 
 function HeaderSkeleton() {
   return (

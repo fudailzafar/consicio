@@ -4,7 +4,6 @@ import {
   MotionH1,
   MotionP,
 } from "@/components/common/motion-wrapper";
-import SummaryCard from "@/components/summaries/summary-card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { itemVariants } from "@/utils/constants";
 

@@ -2,7 +2,6 @@ import BgGradient from "@/components/common/bg-gradient";
 import { MotionDiv } from "@/components/common/motion-wrapper";
 import UploadForm from "@/components/upload/upload-form";
 import UploadHeader from "@/components/upload/upload-header";
-import { hasReachedUploadLimit } from "@/lib/user";
 import { containerVariants } from "@/utils/constants";
 
 import { currentUser } from "@clerk/nextjs/server";
