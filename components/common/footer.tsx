@@ -11,9 +11,25 @@ export default function Footer() {
           {/* <!--Grid--> */}
           <div className="py-7">
             <div className="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
-              <span className="text-sm text-white ">
-                Copyright © Consicio 2025, All rights reserved.
-              </span>
+              <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-4">
+                <span className="text-sm text-white">
+                  Copyright © Consicio 2025, All rights reserved.
+                </span>
+                <div className="flex space-x-4 text-sm">
+                  <a
+                    href="/privacy-policy"
+                    className="text-white hover:text-rose-200 underline"
+                  >
+                    Privacy Policy
+                  </a>
+                  <a
+                    href="/terms-of-service"
+                    className="text-white hover:text-rose-200 underline"
+                  >
+                    Terms of Service
+                  </a>
+                </div>
+              </div>
               <div className="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
                 <a
                   href="mailto:fudail.zafar@gmail.com"
