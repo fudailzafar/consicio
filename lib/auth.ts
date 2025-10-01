@@ -19,12 +19,15 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: false, // Set to true if you want email verification
+    requireEmailVerification: false,
   },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      redirectURI: process.env.NODE_ENV === "development"
+        ? `${process.env.BETTER_AUTH_URL}/api/auth/callback/google`
+        : "https://www.consicio.tech/api/auth/callback/google",
     },
   },
   session: {
