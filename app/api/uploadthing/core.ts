@@ -1,4 +1,4 @@
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth-server";
 import { UploadThingError } from "uploadthing/server";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
@@ -8,7 +8,7 @@ export const ourFileRouter = {
   pdfUploader: f({ pdf: { maxFileSize: "32MB" } })
     .middleware(async ({ req }) => {
       //get user info
-      const user = await currentUser();
+      const user = await getCurrentUser();
 
       if (!user) {
         throw new UploadThingError("Unauthorized");

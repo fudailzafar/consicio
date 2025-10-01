@@ -4,7 +4,7 @@ import { getDbConnection } from "@/lib/db";
 import { generateSummaryFromGemini } from "@/lib/gemini-ai";
 import { fetchAndExtractPdfText } from "@/lib/langchain";
 import { formatFileNameAsTitle } from "@/utils/format-utils";
-import { auth } from "@clerk/nextjs/server";
+import { requireAuth } from "@/lib/auth-server";
 import { revalidatePath } from "next/cache";
 
 interface PdfSummaryType {
@@ -117,15 +117,15 @@ export async function storePdfSummaryAction({
 }: PdfSummaryType) {
   let savedSummary: any;
   try {
-    const { userId } = await auth();
-    if (!userId) {
+    const user = await requireAuth();
+    if (!user.id) {
       return {
         success: false,
         message: "User not found",
       };
     }
     savedSummary = await savePdfSummary({
-      userId,
+      userId: user.id,
       fileUrl,
       summary,
       title,

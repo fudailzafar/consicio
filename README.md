@@ -5,7 +5,7 @@ Consicio is a modern, responsive web application focused on enhancing productivi
 ## 🚀 Features
 
 - **✨ AI-powered** – Text summarization for efficient content digestion
-- **⚡ Clerk** – Authentication system (Login, Sign Up)
+- **⚡ BetterAuth** – Authentication system (Login, Sign Up)
 - **🛠️ Personal Dashboard** – Personal dashboard to check out summaries and moderate content
 - **📄 SSR** – Dynamic pages with server-side rendering (SSR)
 - **📱Easy Accessibility** – Fully responsive across mobile, tablet, and desktop devices
@@ -16,7 +16,7 @@ Consicio is a modern, responsive web application focused on enhancing productivi
 - **Backend:** TypeScript, Zod (via API routes)
 - **Database:** UploadThing, NeonDB
 - **Styling:** Tailwind CSS, ShadcnUI
-- **Authentication & Security:** Clerk
+- **Authentication & Security:** BetterAuth
 - **AI and Parsing:** LangChain, OpenAI, Gemini
 
 ## 📂 Folder Structure
@@ -171,12 +171,12 @@ cp .env.example .env.local
 2. Fill in the required environment variables in `.env.local`:
 
 ```bash
-# Authentication (Clerk)
-CLERK_SECRET_KEY="your_clerk_secret_key"
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
-
-# Database
+# Database  
 DATABASE_URL="your_database_connection_string"
+
+# Better Auth
+BETTER_AUTH_SECRET="your_better_auth_secret"
+BETTER_AUTH_URL="http://localhost:3000"
 
 # AI Services
 GEMINI_API_KEY="your_gemini_api_key"
@@ -187,8 +187,8 @@ UPLOADTHING_TOKEN="your_uploadthing_token"
 ```
 
 3. Get your environment variables:
-   - **Clerk**: Sign up at [clerk.com](https://clerk.com) and get your keys from the dashboard
-   - **Database**: Set up a PostgreSQL database (Neon, Supabase, or similar)
+   - **Database**: Set up a PostgreSQL database (Neon, Supabase, or similar) and run the `schema-betterauth.sql` file to create the required tables
+   - **BetterAuth**: Generate a random secret key for `BETTER_AUTH_SECRET` and set `BETTER_AUTH_URL` to your domain
    - **Gemini**: Get API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
    - **OpenAI**: Get API key from [OpenAI Platform](https://platform.openai.com/api-keys)
    - **UploadThing**: Sign up at [uploadthing.com](https://uploadthing.com) and get your token

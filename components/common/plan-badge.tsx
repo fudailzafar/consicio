@@ -1,16 +1,16 @@
 import { getPriceIdForActiveUser } from "@/lib/user";
 import { pricingPlans } from "@/utils/constants";
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth-server";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { Crown } from "lucide-react";
 
 export default async function PlanBadge() {
-  const user = await currentUser();
+  const user = await getCurrentUser();
 
   if (!user?.id) return null;
 
-  const email = user.emailAddresses?.[0]?.emailAddress;
+  const email = user.email;
 
   let priceId: string | null = null;
   if (email) {
