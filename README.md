@@ -177,6 +177,8 @@ DATABASE_URL="your_database_connection_string"
 # Better Auth
 BETTER_AUTH_SECRET="your_better_auth_secret"
 BETTER_AUTH_URL="http://localhost:3000"
+GOOGLE_CLIENT_ID="your_google_client_id"
+GOOGLE_CLIENT_SECRET="your_google_client_secret"
 
 # AI Services
 GEMINI_API_KEY="your_gemini_api_key"
