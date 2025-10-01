@@ -59,7 +59,16 @@ export const auth = betterAuth({
     database: {
       generateId: () => crypto.randomUUID(),
     },
+    crossSubDomainCookies: {
+      enabled: true,
+    },
   },
+  trustedOrigins: [
+    "https://www.consicio.tech",
+    "https://consicio.tech",
+    "http://localhost:3000",
+    "http://localhost:3001",
+  ],
 });
 
 export type Session = typeof auth.$Infer.Session;
