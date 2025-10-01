@@ -3,11 +3,11 @@ import { MotionDiv } from "@/components/common/motion-wrapper";
 import UploadForm from "@/components/upload/upload-form";
 import UploadHeader from "@/components/upload/upload-header";
 import { containerVariants } from "@/utils/constants";
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth-server";
 import { redirect } from "next/navigation";
 
 export default async function UploadPage() {
-  const user = await currentUser();
+  const user = await getCurrentUser();
 
   if (!user?.id) {
     redirect("/sign-in");

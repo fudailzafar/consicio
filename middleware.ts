@@ -1,18 +1,35 @@
-import {
-  auth,
-  clerkMiddleware,
-  createRouteMatcher,
-} from "@clerk/nextjs/server";
+import { NextRequest, NextResponse } from "next/server";
 
-const isProtectedRoute = createRouteMatcher([
-  "/dashboard(.*)",
-  "/summaries(.*)",
-  "/upload(.*)",
-]);
+const protectedRoutes = [
+  "/dashboard",
+  "/summaries",
+  "/upload",
+];
 
-export default clerkMiddleware(async (auth, req) => {
-  if (isProtectedRoute(req)) await auth.protect();
-});
+export default async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  
+  // Check if the route is protected
+  const isProtectedRoute = protectedRoutes.some(route => 
+    pathname.startsWith(route)
+  );
+
+  if (isProtectedRoute) {
+    // Check for session token in cookies
+    const sessionToken = request.cookies.get("better-auth.session_token")?.value;
+    
+    if (!sessionToken) {
+      // Redirect to sign-in if no session token
+      const signInUrl = new URL("/sign-in", request.url);
+      return NextResponse.redirect(signInUrl);
+    }
+
+    // For additional session validation, we'll rely on server-side checks in the actual pages
+    // since BetterAuth doesn't work well in Edge Runtime
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
   matcher: [

@@ -1,12 +1,12 @@
 "use server";
 
 import { getDbConnection } from "@/lib/db";
-import { currentUser } from "@clerk/nextjs/server";
+import { getCurrentUser } from "@/lib/auth-server";
 import { revalidatePath } from "next/cache";
 
 export async function deleteSummaryAction(summaryId: string) {
   try {
-    const user = await currentUser();
+    const user = await getCurrentUser();
     const userId = user?.id;
     if (!userId) {
       throw new Error("Unauthorized");
