@@ -10,7 +10,7 @@ export const generateSummaryFromGemini = async (pdfText: string) => {
     const prompt = `${SUMMARY_SYSTEM_PROMPT}\n\nTransform this document into an engaging, easy-to-read summary with contextually relevant emojis and proper markdown formatting:\n\n${cleanedPdfText}`;
 
     const result = await genAI.models.generateContent({
-      model: "gemini-2.0-flash-001",
+      model: "gemini-2.5-flash",
       contents: [{ role: "user", parts: [{ text: prompt }] }],
       config: {
         temperature: 0.7,
