@@ -9,9 +9,10 @@ import {
   MotionSection,
   MotionSpan,
 } from "../common/motion-wrapper";
+import type { TargetAndTransition } from "motion/react";
 import { containerVariants, itemVariants } from "@/utils/constants";
 
-const buttonVariants = {
+const buttonVariants: TargetAndTransition = {
   scale: 1.05,
   transition: {
     type: "spring",
