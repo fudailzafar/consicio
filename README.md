@@ -219,7 +219,7 @@ This generates a `build/` folder with optimized static files, ready for deployme
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
 
 ---
 
