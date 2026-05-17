@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <div className="bg-white">
       <footer
@@ -12,7 +14,7 @@ export default function Footer() {
           <div className="py-7">
             <div className="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
               <span className="text-sm text-white ">
-                Copyright © Consicio 2025, All rights reserved.
+                Copyright © Consicio {year}, All rights reserved.
               </span>
               <div className="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
                 <a
