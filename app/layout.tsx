@@ -54,10 +54,6 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Consicio - AI-Powered PDF Summarizer",
   },
-  verification: {
-    google: "Rh0kj2q3-QvEe2xV56Hwz3x0YcB8bTtAg4fV0wZXJ9k",
-    yandex: "0ca3a41bb16e37ce",
-  },
 };
 
 export default function RootLayout({
